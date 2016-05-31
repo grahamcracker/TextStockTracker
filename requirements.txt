@@ -1,5 +1,6 @@
 click==6.6
 Flask==0.11
+Flask-SQLAlchemy==2.1
 httplib2==0.9.2
 itsdangerous==0.24
 Jinja2==2.8
@@ -7,5 +8,6 @@ MarkupSafe==0.23
 pytz==2016.4
 requests==2.10.0
 six==1.10.0
+SQLAlchemy==1.0.13
 twilio==5.4.0
 Werkzeug==0.11.10
