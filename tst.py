@@ -13,7 +13,7 @@ def hello():
     message = ""
 
     if body == 'commands':
-        message += "Available commands:\n"
+        message = "Available commands:\n"
         message += "_stock_symbol_ = look up stock symbol 'ABCD'\n"
         message += "lookup _company name_ = get the stock symbol for a company\n"
     elif first_word == 'lookup':
@@ -21,18 +21,18 @@ def hello():
         r = requests.get(MOD_BASE_URL + 'Lookup/json?input=' + query)
         json = r.json()
         first_result = json[0]
-        message += "You're probably looking for "
+        message = "You're probably looking for "
         message += first_result['Name']
         message += ", which is listed on "
         message += first_result['Exchange']
         message += " as '"
         message += first_result ['Symbol']
         message += "'."
-    elif body.isalpha() and len(body) < 6 and all(letter.isupper() for letter in body):
-        # probably a stock ticker: alphabet characters, length < 6 and all letters are capitalized
+    elif body.isalpha() and len(body) <= 5 and all(letter.isupper() for letter in body):
+        # probably a stock ticker: alphabet characters, length <= 5 and all letters are capitalized
         r = requests.get(MOD_BASE_URL + 'Quote/json?symbol=' + body)
         json = r.json()
-        message += json['Symbol']
+        message = json['Symbol']
         message += " ("
         message += json['Name']
         message += ") is currently trading at $"
